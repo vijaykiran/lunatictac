@@ -4,13 +4,8 @@
         [somnium.congomongo :only [fetch-one insert! update!]]) )
 
 
-(defn- key-attrs [nick]
-  (let [nick (.toLowerCase nick)]
-    (keyed [nick])))
-
-
 (defn- record-nick-location [{:keys [com bot nick channel message action?]}]
-  (let [attrs (key-attrs nick)]
+  (let [attrs (keyed [nick])]
     (println "Noted that" nick " was at "
              (clojure.string/replace-first message #"@iamat " "")
              " at " (java.util.Date.))
